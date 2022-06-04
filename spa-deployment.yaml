@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-frontend
+spec:
+  selector:
+    matchLabels:
+      app: nginx-frontend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-frontend
+    spec:
+      containers:
+        - name: nginx-frontend
+          image: kosolkomenek/first-deploy:v2
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 80
